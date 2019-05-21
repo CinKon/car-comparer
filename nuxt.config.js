@@ -1,6 +1,6 @@
 const join = require('path').join
 const pkg = require('./package')
-const tailwindJS = join(__dirname, 'tailwind.js')
+const tailwindJS = join(__dirname, 'tailwind.config.js')
 
 module.exports = {
   mode: 'spa',

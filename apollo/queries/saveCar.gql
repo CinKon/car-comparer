@@ -1,0 +1,5 @@
+mutation createCarMutation($input: CreateCarInput!) {
+  createCar(car: $input) {
+    _id
+  }
+}

@@ -1,0 +1,9 @@
+query {
+  cars {
+    _id
+    model
+    manufacturer
+    priceTotal
+    priceMonthly
+  }
+}

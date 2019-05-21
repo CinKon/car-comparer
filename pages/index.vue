@@ -1,22 +1,32 @@
 <template>
-  <div>
-    <h3>Users</h3>
-    <ul>
-      <li v-for="item in users" :key="item.id">
-        {{ item.name }}
-      </li>
-    </ul>
+  <div
+    class="flex flex-column h-screen justify-center items-center bg-gray-100"
+  >
+    <div class="bg-white rounded-lg p-6 shadow-lg max-w-6xl m-auto w-full">
+      <AddCarForm />
+      <ul>
+        <li v-for="item in cars" :key="item.id">
+          {{ item.manufacturer }} {{ item.model }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import getUsers from '~/apollo/queries/fetchUsers.gql'
+import getCars from '~/apollo/queries/fetchCars.gql'
+
+// Components
+import AddCarForm from '../components/AddCar.form.vue'
 
 export default {
+  components: {
+    AddCarForm,
+  },
   apollo: {
-    users: {
+    cars: {
       prefetch: true,
-      query: getUsers,
+      query: getCars,
     },
   },
 }
