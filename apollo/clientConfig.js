@@ -1,4 +1,4 @@
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 export default function(context) {
   return {
@@ -8,5 +8,5 @@ export default function(context) {
     },
     cache: new InMemoryCache(),
     // wsEndpoint: 'ws://localhost:4000/endpoint',
-  }
+  };
 }

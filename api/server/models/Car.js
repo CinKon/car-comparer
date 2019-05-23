@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
-import { ObjectID } from 'mongodb'
+import mongoose from 'mongoose';
+import { ObjectID } from 'mongodb';
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 ObjectID.prototype.valueOf = function() {
-  return this.toString()
-}
+  return this.toString();
+};
 
 const CarSchema = new Schema({
   model: {
@@ -24,6 +24,22 @@ const CarSchema = new Schema({
     type: Number,
     required: false,
   },
-})
+  runtime: {
+    type: Number,
+    required: false,
+  },
+  energy: {
+    type: String,
+    required: false,
+  },
+  basicOptions: {
+    type: Array,
+    required: false,
+  },
+  buildType: {
+    type: String,
+    required: false,
+  },
+});
 
-export default mongoose.model('Car', CarSchema)
+export default mongoose.model('Car', CarSchema);

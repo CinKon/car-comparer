@@ -5,6 +5,10 @@ export default `
     manufacturer: String!
     priceTotal: Float
     priceMonthly: Float
+    runtime: Float
+    energy: String
+    basicOptions: [String]
+    buildType: String
   }
 
   type Query {
@@ -21,8 +25,12 @@ export default `
   input CreateCarInput {
     model: String!
     manufacturer: String!
-    priceTotal: Float
-    priceMonthly: Float
+    priceTotal: String
+    priceMonthly: String
+    runtime: String
+    energy: String
+    basicOptions: [String]
+    buildType: String
   }
   
   input UpdateCarInput {
@@ -31,4 +39,4 @@ export default `
     priceTotal: Float
     priceMonthly: Float
   } 
-`
+`;

@@ -1,4 +1,4 @@
-import Car from '../../../server/models/Car'
+import Car from '../../../server/models/Car';
 
 export default {
   Query: {
@@ -9,7 +9,7 @@ export default {
     cars: async (parent, args, context, info) => {
       const cars = await Car.find({})
         .populate()
-        .exec()
+        .exec();
 
       return cars.map((c) => ({
         _id: c._id.toString(),
@@ -17,7 +17,11 @@ export default {
         manufacturer: c.manufacturer,
         priceTotal: c.priceTotal,
         priceMonthly: c.priceMonthly,
-      }))
+        runtime: c.runtime,
+        energy: c.energy,
+        buildType: c.buildType,
+        basicOptions: c.basicOptions,
+      }));
     },
   },
   Mutation: {
@@ -27,29 +31,33 @@ export default {
         model: car.model,
         priceTotal: car.priceTotal,
         priceMonthly: car.priceMonthly,
-      })
+        runtime: car.runtime,
+        energy: car.energy,
+        buildType: car.buildType,
+        basicOptions: car.basicOptions,
+      });
 
       return new Promise((resolve, reject) => {
         newCar.save((err, res) => {
-          err ? reject(err) : resolve(res)
-        })
-      })
+          err ? reject(err) : resolve(res);
+        });
+      });
     },
     updateCar: (parent, { _id, car }, context, info) => {
       return new Promise((resolve, reject) => {
         Car.findByIdAndUpdate(_id, { $set: { ...car } }, { new: true }).exec(
           (err, res) => {
-            err ? reject(err) : resolve(res)
+            err ? reject(err) : resolve(res);
           },
-        )
-      })
+        );
+      });
     },
     deleteCar: (parent, { _id }, context, info) => {
       return new Promise((resolve, reject) => {
         Car.findByIdAndDelete(_id).exec((err, res) => {
-          err ? reject(err) : resolve(res)
-        })
-      })
+          err ? reject(err) : resolve(res);
+        });
+      });
     },
   },
-}
+};

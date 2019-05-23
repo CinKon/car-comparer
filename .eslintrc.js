@@ -4,8 +4,9 @@ module.exports = {
     browser: true,
     node: true,
   },
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
   },
   extends: [
     '@nuxtjs',
@@ -14,11 +15,14 @@ module.exports = {
     'prettier',
     'prettier/vue',
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', '@typescript-eslint'],
   // add your custom rules here
   rules: {
     'nuxt/no-cjs-in-config': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     // 'comma-dangle': ['error', 'always'],
-    // semi: ['error', 'always'],
+    semi: ['error', 'always'],
+    'prettier/prettier': 'off',
   },
 };

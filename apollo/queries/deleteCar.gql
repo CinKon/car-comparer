@@ -1,0 +1,6 @@
+mutation deleteCarMutation($id: String!) {
+  deleteCar(_id: $id) {
+    _id
+    model
+  }
+}

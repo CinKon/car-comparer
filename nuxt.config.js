@@ -1,6 +1,6 @@
-const join = require('path').join
-const pkg = require('./package')
-const tailwindJS = join(__dirname, 'tailwind.config.js')
+const join = require('path').join;
+const pkg = require('./package');
+const tailwindJS = join(__dirname, 'tailwind.config.js');
 
 module.exports = {
   mode: 'spa',
@@ -26,12 +26,12 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['~/assets/css/tailwind.css'],
+  css: ['element-ui/lib/theme-chalk/index.css', '~/assets/css/tailwind.css'],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['@/plugins/element-ui', '@/plugins/toCurrency.filter.js'],
 
   /*
    ** Nuxt.js modules
@@ -42,6 +42,12 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/apollo',
   ],
+
+  elementUI: {
+    components: ['Select', 'Option', 'Button', 'Form', 'FormItem', 'Input'],
+    locale: 'de',
+  },
+
   /*
    ** Axios module configuration
    */
@@ -64,14 +70,18 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/,
-        })
+        });
       }
     },
     /*
      ** PostCSS
      */
     postcss: {
-      plugins: [require('tailwindcss')(tailwindJS), require('autoprefixer')],
+      plugins: [
+        require('postcss-normalize'),
+        require('tailwindcss')(tailwindJS),
+        require('autoprefixer'),
+      ],
     },
   },
 
@@ -95,4 +105,4 @@ module.exports = {
       default: '~/apollo/clientConfig.js',
     },
   },
-}
+};
